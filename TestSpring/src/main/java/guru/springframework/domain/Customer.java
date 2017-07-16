@@ -21,8 +21,8 @@ public class Customer {
 	@OneToMany(targetEntity = Address.class, mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Set<Address> address;
 	
-	@OneToMany(targetEntity = Order.class, mappedBy = "customer" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private Set<Order> order;
+	//@OneToMany(targetEntity = Order.class, mappedBy = "customer" , fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	//private Set<Order> order;
 
 
 	public int getId() {
@@ -62,11 +62,11 @@ public class Customer {
 	public void setAddress(Set<Address> address) {
 		this.address = address;
 	}
-	public Set<Order> getOrder() {
+	/*public Set<Order> getOrder() {
 		return order;
 	}
 	public void setOrder(Set<Order> order) {
 		this.order = order;
-	}
+	}*/
 	
 }

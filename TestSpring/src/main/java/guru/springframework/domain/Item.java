@@ -13,17 +13,34 @@ import javax.persistence.ManyToMany;
 
 @Entity
 public class Item {
-	 @Id
-	 @GeneratedValue(strategy = GenerationType.AUTO)
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	private String name;
 	private String description;
 	
 	@ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "Item_Order", 
-    				joinColumns = @JoinColumn(name = "order_id", referencedColumnName = "id"), 
-    				inverseJoinColumns = @JoinColumn(name = "item_id", referencedColumnName = "id"))	
+    				joinColumns = @JoinColumn(name = "item_id", referencedColumnName = "id"), 
+    				inverseJoinColumns = @JoinColumn(name = "order_id", referencedColumnName = "id"))	
    	private Set<Order> order;
+	
+	
+	public Item(){
+		
+	}
+	public Item(String name){
+		this.name=name;
+	}
+	public Item(String name,String description){
+		this.name=name;
+		this.description=description;
+	}
+	public Item(String name, String description, Set<Order> order) {
+		this.name = name;
+		this.description = description;
+		this.order = order;
+	}
 
 	public Integer getId() {
 		return id;

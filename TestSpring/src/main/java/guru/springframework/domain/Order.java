@@ -18,13 +18,31 @@ public class Order {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 	private String orderdate;
-	private float amount;	
-	@ManyToOne
-	@JoinColumn(name = "customer_id")
-	private Customer customer;
+	private String amount;	
+	//@ManyToOne
+	//@JoinColumn(name = "customer_id")
+	//private Customer customer;
 	
-	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "items")
+	@ManyToMany(mappedBy = "order")
 	private Set<Item> item;
+	
+	public Order(){
+		
+	}
+	public Order(String orderdate){
+		this.orderdate=orderdate;
+	}
+	public Order(String orderdate,String amount){
+		this.orderdate=orderdate;
+		this.amount=amount;
+	}
+	
+	public Order(String orderdate, String amount, Set<Item> item) {
+		this.orderdate = orderdate;
+		this.amount = amount;
+		//this.customer = customer;
+		this.item = item;
+	}
 
 	public Integer getId() {
 		return id;
@@ -42,21 +60,21 @@ public class Order {
 		this.orderdate = orderdate;
 	}
 
-	public float getAmount() {
+	public String getAmount() {
 		return amount;
 	}
 
-	public void setAmount(float amount) {
+	public void setAmount(String amount) {
 		this.amount = amount;
 	}
 
-	public Customer getCustomer() {
+	/*public Customer getCustomer() {
 		return customer;
 	}
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
-	}
+	}*/
 	
 	public Set<Item> getItem() {
 		return item;
